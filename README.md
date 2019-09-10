@@ -10,15 +10,17 @@
 TaskMaster allows you to add a new task with a title and description. This adds a new JSON object to the database. A user can then route to `/tasks/{id}/state` to update the status of the task from "Available" -> "Assigned" -> "Accepted" -> "Finished".
 
 ### Link <a name="link"></a>
+**[Deployed URL](http://taskmaster-env.3nz9fretef.us-west-2.elasticbeanstalk.com/)**
+
 * Controllers
   * [HomeController](./src/main/java/com/nparo/TaskMaster/controllers/HomeController.java)
 * Models
   * [Tasks](./src/main/java/com/nparo/TaskMaster/models/Tasks.java)
 * Repositories
-  * [DynamoDB]()
-  * [S3Client]()
-  * [TasksRepository]()
-* [Site](http://taskmaster-env.3nz9fretef.us-west-2.elasticbeanstalk.com/)
+  * [DynamoDB](./src/main/java/com/nparo/TaskMaster/repository/DynamoDB.java)
+  * [S3Client](./src/main/java/com/nparo/TaskMaster/repository/S3Client.java)
+  * [TasksRepository](./src/main/java/com/nparo/TaskMaster/repository/TasksRepository.java)
+
 
 ### Issues <a name="issues"></a>
 * I felt 3 major pinch points when completing this lab.
