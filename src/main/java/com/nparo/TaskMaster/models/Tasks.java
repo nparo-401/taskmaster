@@ -15,7 +15,7 @@ public class Tasks {
   private String assignee;
   private ArrayList<History> history;
   
-  public Tasks(){
+  public Tasks() {
     this.history = new ArrayList<>();
   }
   
@@ -25,6 +25,7 @@ public class Tasks {
     this.description = description;
     this.status = status;
     this.assignee = assignee;
+    this.history = new ArrayList<>();
   }
   
   @DynamoDBHashKey
