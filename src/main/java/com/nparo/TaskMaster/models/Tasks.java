@@ -5,7 +5,6 @@ import com.nparo.TaskMaster.repository.HistoryConverter;
 
 import java.util.ArrayList;
 
-@DynamoDBDocument
 @DynamoDBTable(tableName = "taskmaster")
 public class Tasks {
   private String id;
@@ -16,7 +15,6 @@ public class Tasks {
   private ArrayList<History> history;
   
   public Tasks() {
-    this.history = new ArrayList<>();
   }
   
   public Tasks(String id, String title, String description, String status, String assignee) {
@@ -70,7 +68,7 @@ public class Tasks {
   
   public void setAssignee (String assignee) { this.assignee = assignee; }
   
-  @DynamoDBTypeConverted(converter = HistoryConverter.class)
+//  @DynamoDBTypeConverted(converter = HistoryConverter.class)
   @DynamoDBAttribute
   public ArrayList<History> getHistory() {
     return history;
