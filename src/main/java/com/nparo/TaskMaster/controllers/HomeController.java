@@ -27,7 +27,7 @@ public class HomeController {
   
   @GetMapping("/users/{name}/tasks")
   public List<Tasks> getTasksForUser(@PathVariable String name) {
-    return tasksRepository.findAllByAssignee(name);
+    return tasksRepository.findByAssignee(name);
   }
   
   @PostMapping("/tasks")
