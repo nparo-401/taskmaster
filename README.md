@@ -29,5 +29,5 @@ TaskMaster allows you to add a new task with a title and description. This adds 
   * figuring out why the deployed site would not host properly. This was an easy fix after I realized I had not entered the security keys.
 
 ### Resources <a name="resources"></a>
-* Trevor Dobson
+* **Trevor Dobson** - fricken awesome
 * Marisha Hoza
