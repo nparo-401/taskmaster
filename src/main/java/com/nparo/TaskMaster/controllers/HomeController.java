@@ -33,7 +33,8 @@ public class HomeController {
   @PostMapping("/tasks")
   public Tasks addNewTask(@RequestBody Tasks tasks) {
     Tasks t = new Tasks(tasks.getId(), tasks.getTitle(), tasks.getDescription(), "Available", "none");
-    historySetter(t);
+    t.addHistory();
+//    historySetter(t);
     tasksRepository.save(t);
     return t;
   }
@@ -43,10 +44,12 @@ public class HomeController {
     Tasks t = tasksRepository.findById(id).get();
     if (t.getStatus().equals("Assigned")) {
       t.setStatus("Accepted");
-      historySetter(t);
+      t.addHistory();
+//      historySetter(t);
     } else if (t.getStatus().equals("Accepted")) {
       t.setStatus("Finished");
-      historySetter(t);
+      t.addHistory();
+//      historySetter(t);
     }
     tasksRepository.save(t);
     return t;
@@ -57,7 +60,8 @@ public class HomeController {
     Tasks t = tasksRepository.findById(id).get();
     t.setAssignee(assignee);
     t.setStatus("Assigned");
-    historySetter(t);
+    t.addHistory();
+//    historySetter(t);
     tasksRepository.save(t);
     return t;
   }
@@ -71,7 +75,7 @@ public class HomeController {
   
 //  Helper Method
   private void historySetter(Tasks t) {
-    History history = new History(new Date().toString(), t.getStatus());
-    t.addHistory(history);
+//    History history = new History(new Date().toString(), t.getStatus());
+//    t.addHistory(history);
   }
 }

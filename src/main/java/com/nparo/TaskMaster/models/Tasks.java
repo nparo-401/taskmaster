@@ -3,6 +3,7 @@ package com.nparo.TaskMaster.models;
 import com.amazonaws.services.dynamodbv2.datamodeling.*;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 @DynamoDBTable(tableName = "taskmaster")
 public class Tasks {
@@ -76,8 +77,8 @@ public class Tasks {
     this.history = history;
   }
   
-  public void addHistory(History history){
+  public void addHistory(){
+    History history = new History(new Date().toString(), this.status, this.assignee);
     this.history.add(history);
   }
-
 }
