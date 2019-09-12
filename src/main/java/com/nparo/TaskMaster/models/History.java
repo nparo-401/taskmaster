@@ -10,10 +10,10 @@ public class History {
   
   public History(){}
   
-  public History(String date, String action, String assignee) {
+  public History(String date, String action) {
     this.date = date;
     this.action = action;
-    this.assignee = assignee;
+    this.assignee = "none";
   }
   
   public String getDate () {

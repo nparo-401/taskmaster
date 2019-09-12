@@ -34,8 +34,14 @@ public class HomeController {
   public Tasks addNewTask(@RequestBody Tasks tasks) {
     Tasks t = new Tasks(tasks.getId(), tasks.getTitle(), tasks.getDescription(), "Available", "none");
     t.addHistory();
-//    historySetter(t);
     tasksRepository.save(t);
+    return t;
+  }
+  
+  @DeleteMapping("/tasks/{id}")
+  public Tasks deleteTaskStatus(@PathVariable String id) {
+    Tasks t = tasksRepository.findById(id).get();
+    tasksRepository.delete(t);
     return t;
   }
   
@@ -45,11 +51,9 @@ public class HomeController {
     if (t.getStatus().equals("Assigned")) {
       t.setStatus("Accepted");
       t.addHistory();
-//      historySetter(t);
     } else if (t.getStatus().equals("Accepted")) {
       t.setStatus("Finished");
       t.addHistory();
-//      historySetter(t);
     }
     tasksRepository.save(t);
     return t;
@@ -61,21 +65,7 @@ public class HomeController {
     t.setAssignee(assignee);
     t.setStatus("Assigned");
     t.addHistory();
-//    historySetter(t);
     tasksRepository.save(t);
     return t;
-  }
-  
-  @DeleteMapping("/tasks/{id}/delete")
-  public Tasks deleteTaskStatus(@PathVariable String id) {
-    Tasks t = tasksRepository.findById(id).get();
-    tasksRepository.delete(t);
-    return t;
-  }
-  
-//  Helper Method
-  private void historySetter(Tasks t) {
-//    History history = new History(new Date().toString(), t.getStatus());
-//    t.addHistory(history);
   }
 }

@@ -78,7 +78,8 @@ public class Tasks {
   }
   
   public void addHistory(){
-    History history = new History(new Date().toString(), this.status, this.assignee);
+    History history = new History(new Date().toString(), this.status);
+    history.setAssignee(this.assignee);
     this.history.add(history);
   }
 }
