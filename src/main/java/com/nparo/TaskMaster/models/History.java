@@ -6,12 +6,14 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBDocument;
 public class History {
   private String date;
   private String action;
+  private String assignee;
   
-  public History(){};
+  public History(){}
   
-  public History(String date, String action) {
+  public History(String date, String action, String assignee) {
     this.date = date;
     this.action = action;
+    this.assignee = assignee;
   }
   
   public String getDate () {
@@ -28,5 +30,13 @@ public class History {
   
   public void setAction (String action) {
     this.action = action;
+  }
+  
+  public String getAssignee () {
+    return assignee;
+  }
+  
+  public void setAssignee (String assignee) {
+    this.assignee = assignee;
   }
 }
