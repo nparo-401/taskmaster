@@ -6,6 +6,7 @@
 * [Issues](#issues)
 * [Change Log](#change)
 * [Resources](#resources)
+* [Images](#images)
 
 ### Description <a name="description"></a>
 TaskMaster allows you to add a new task with a title and description. This adds a new JSON object to the database. A user can then route to `/tasks/{id}/state` to update the status of the task from "Available" -> "Assigned" -> "Accepted" -> "Finished".
@@ -43,3 +44,13 @@ TaskMaster allows you to add a new task with a title and description. This adds 
 * **Trevor Dobson** - fricken awesome
 * Marisha Hoza
 * [DynamoDb Type List](https://stackoverflow.com/questions/45695830/dynamodb-list-type)
+
+### Images <a name="images"></a>
+**Whiteboard 1**
+
+![white board 1](./src/main/resources/static/whiteboard1.jpg)
+
+**Whiteboard 2**
+
+![white board 2](./src/main/resources/static/whiteboard2.jpg)
+
