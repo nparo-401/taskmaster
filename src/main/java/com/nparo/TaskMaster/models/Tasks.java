@@ -1,7 +1,6 @@
 package com.nparo.TaskMaster.models;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.*;
-import com.nparo.TaskMaster.repository.HistoryConverter;
 
 import java.util.ArrayList;
 
@@ -68,7 +67,6 @@ public class Tasks {
   
   public void setAssignee (String assignee) { this.assignee = assignee; }
   
-//  @DynamoDBTypeConverted(converter = HistoryConverter.class)
   @DynamoDBAttribute
   public ArrayList<History> getHistory() {
     return history;

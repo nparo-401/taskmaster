@@ -20,7 +20,6 @@ TaskMaster allows you to add a new task with a title and description. This adds 
   * [Tasks](./src/main/java/com/nparo/TaskMaster/models/Tasks.java)
 * Repositories
   * [DynamoDB](./src/main/java/com/nparo/TaskMaster/repository/DynamoDB.java)
-  * [HistoryConverter](./src/main/java/com/nparo/TaskMaster/repository/HistoryConverter.java)
   * [S3Client](./src/main/java/com/nparo/TaskMaster/repository/S3Client.java)
   * [TasksRepository](./src/main/java/com/nparo/TaskMaster/repository/TasksRepository.java)
 
