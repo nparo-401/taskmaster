@@ -51,7 +51,7 @@ public class HomeController {
     return t;
   }
   
-  @PostMapping("/tasks/{id}/images")
+  @PostMapping("/tasks/{id}/image")
   public Task addImageToTask(@PathVariable String id, @RequestPart(value = "file") MultipartFile file) {
     String pic = this.s3Client.uploadFile(file);
     Task t = tasksRepository.findById(id).get();
