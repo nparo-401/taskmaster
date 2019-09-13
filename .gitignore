@@ -39,7 +39,7 @@ captures/
 .idea/
 *.iml
 **/.idea/workspace.xml
-**/.idea/tasks.xml
+**/.idea/task.xml
 **/.idea/gradle.xml
 **/.idea/dictionaries
 **/.idea/libraries
@@ -289,7 +289,7 @@ typings/
 ### VisualStudioCode ###
 .vscode/*
 !.vscode/settings.json
-!.vscode/tasks.json
+!.vscode/task.json
 !.vscode/launch.json
 !.vscode/extensions.json
 
@@ -299,7 +299,7 @@ typings/
 
 # User-specific stuff
 .idea/**/workspace.xml
-.idea/**/tasks.xml
+.idea/**/task.xml
 .idea/**/usage.statistics.xml
 .idea/**/dictionaries
 .idea/**/shelf
