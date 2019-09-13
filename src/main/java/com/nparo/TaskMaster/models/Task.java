@@ -6,18 +6,19 @@ import java.util.ArrayList;
 import java.util.Date;
 
 @DynamoDBTable(tableName = "taskmaster")
-public class Tasks {
+public class Task {
   private String id;
   private String title;
   private String description;
   private String status;
   private String assignee;
   private ArrayList<History> history;
+  private String image;
   
-  public Tasks() {
+  public Task () {
   }
   
-  public Tasks(String id, String title, String description, String status, String assignee) {
+  public Task (String id, String title, String description, String status, String assignee) {
     this.id = id;
     this.title = title;
     this.description = description;
@@ -81,5 +82,14 @@ public class Tasks {
     History history = new History(new Date().toString(), this.status);
     history.setAssignee(this.assignee);
     this.history.add(history);
+  }
+  
+  @DynamoDBAttribute
+  public String getImage () {
+    return image;
+  }
+  
+  public void setImage (String image) {
+    this.image = image;
   }
 }

@@ -52,5 +52,5 @@ TaskMaster allows you to add a new task with a title and description. This adds 
 
 **Whiteboard 2**
 
-![white board 2](./src/main/resources/static/whiteboard2.jpg)
+![white board 2](./src/main/resources/static/whiteboard2.JPG)
 

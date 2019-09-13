@@ -1,10 +1,11 @@
 package com.nparo.TaskMaster.controllers;
 
-import com.nparo.TaskMaster.models.History;
-import com.nparo.TaskMaster.models.Tasks;
+import com.nparo.TaskMaster.models.Task;
+import com.nparo.TaskMaster.repository.S3Client;
 import com.nparo.TaskMaster.repository.TasksRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.*;
 
@@ -14,6 +15,13 @@ import java.util.*;
 public class HomeController {
   @Autowired
   TasksRepository tasksRepository;
+  
+  private S3Client s3Client;
+  
+  @Autowired
+  HomeController(S3Client s3Client) {
+    this.s3Client = s3Client;
+  }
   
   @GetMapping("/")
   public String getHome() {
@@ -25,29 +33,43 @@ public class HomeController {
     return (List)tasksRepository.findAll();
   }
   
+  @GetMapping("/tasks/{id}")
+  public Task getSingleTask(@PathVariable String id) {
+    return tasksRepository.findById(id).get();
+  }
+  
   @GetMapping("/users/{name}/tasks")
-  public List<Tasks> getTasksForUser(@PathVariable String name) {
+  public List<Task> getTasksForUser(@PathVariable String name) {
     return tasksRepository.findByAssignee(name);
   }
   
   @PostMapping("/tasks")
-  public Tasks addNewTask(@RequestBody Tasks tasks) {
-    Tasks t = new Tasks(tasks.getId(), tasks.getTitle(), tasks.getDescription(), "Available", "none");
+  public Task addNewTask(@RequestBody Task task) {
+    Task t = new Task(task.getId(), task.getTitle(), task.getDescription(), "Available", "none");
     t.addHistory();
     tasksRepository.save(t);
     return t;
   }
   
+  @PostMapping("/tasks/{id}/images")
+  public Task addImageToTask(@PathVariable String id, @RequestPart(value = "file") MultipartFile file) {
+    String pic = this.s3Client.uploadFile(file);
+    Task t = tasksRepository.findById(id).get();
+    t.setImage(pic);
+    tasksRepository.save(t);
+    return t;
+  }
+  
   @DeleteMapping("/tasks/{id}")
-  public Tasks deleteTaskStatus(@PathVariable String id) {
-    Tasks t = tasksRepository.findById(id).get();
+  public Task deleteTaskStatus(@PathVariable String id) {
+    Task t = tasksRepository.findById(id).get();
     tasksRepository.delete(t);
     return t;
   }
   
   @PutMapping("/tasks/{id}/state")
-  public Tasks updateTaskStatus(@PathVariable String id) {
-    Tasks t = tasksRepository.findById(id).get();
+  public Task updateTaskStatus(@PathVariable String id) {
+    Task t = tasksRepository.findById(id).get();
     if (t.getStatus().equals("Assigned")) {
       t.setStatus("Accepted");
       t.addHistory();
@@ -60,8 +82,8 @@ public class HomeController {
   }
   
   @PutMapping("/tasks/{id}/assign/{assignee}")
-  public Tasks addTaskAssignee(@PathVariable String id, @PathVariable String assignee) {
-    Tasks t = tasksRepository.findById(id).get();
+  public Task addTaskAssignee(@PathVariable String id, @PathVariable String assignee) {
+    Task t = tasksRepository.findById(id).get();
     t.setAssignee(assignee);
     t.setStatus("Assigned");
     t.addHistory();
