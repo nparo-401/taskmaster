@@ -39,6 +39,9 @@ TaskMaster allows you to add a new task with a title and description. This adds 
   * Updated the @PutMapping for `/tasks/{id}/state` to exclude a change from "Available" to "Assigned" - this status change is handled in the route for adding an assignee
   * Added a @PutMapping for `/tasks/{id}/assign/{assignee}` to change status from "Available" to "Assigned" and to add a new instance to the list of history objects.
   * Added a `HistoryConverter` class to handle parsing the history object to an from the DynamoDB.
+* Day 4
+  * Added in a `@PostMapping` controller to upload an image to an Amazon AWS s3 bucket and save the image url to the task repository.
+  * Updated the `Task` class to include an image.
 
 ### Resources <a name="resources"></a>
 * **Trevor Dobson** - fricken awesome
